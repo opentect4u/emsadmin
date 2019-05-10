@@ -24,7 +24,7 @@ class Auths extends MX_Controller {
                         
                         "user_id"                 =>  $this->input->post('user_id'),
                         
-                        "user_status"             =>  'A'
+                        "user_status"             =>  'S'
                     );
                 
                     $user_data = $this->Auth->f_get_particulars("md_users", $select, $where, 1);

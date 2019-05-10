@@ -1,23 +1,24 @@
+<div class="row container" >
+    
+    <div class="col-lg-9 col-sm-12">
 
-            
-<div class="col-lg-9 col-sm-12">
+        <h3><strong>Organisations</strong></h3>
 
-    <h3><strong>Organisations</strong></h3>
-    <span class="confirm-div" style="color:green; float:right; "></span>
+    </div>
+
+    <div class="col-lg-2 col-sm-12">
+
+        <div class="alert alert-<?php echo $this->session->flashdata('msg')['status']; ?>"></div>    
+
+    </div>
 
 </div>
-
-
 
 <div class="col-lg-12 container">
 
     <h3>
         <a href="<?php echo site_url("admin/organisation/add");?>" class="btn btn-primary" style="width: 100px; float:left;">Add</a>
-        <div class="input-group" style="margin-left:75%;">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search..." id="search" style="z-index: 0;">
-        </div>         
-    </h3>
+    </h3>         
 
     <table class="table table-bordered table-hover">
 
@@ -48,6 +49,11 @@
                     <td><?php echo $list->org_name; ?></td>
                     <td><?php echo $list->org_phno; ?></td>
                     <td><?php echo $list->org_state; ?></td>
+                    <td valign="middle">
+                        <a href="<?php echo site_url('admin/organisation/edit?id='.$list->org_id.''); ?>">
+                            <img src="<?php echo base_url('admincss/images/b_edit.png'); ?>" alt="edit" border="0">
+                        </a>
+                    </td>
                 </tr>
 
             <?php
@@ -74,3 +80,19 @@
     </table>
     
 </div>
+
+<script>
+   
+    $(document).ready(function() {
+
+        $('.alert').hide();
+
+        <?php if($this->session->flashdata('msg')['message']){ ?>
+
+            $('.alert').html('<?php echo $this->session->flashdata('msg')['message']; ?> </button>').show();
+
+        <?php } ?>
+
+    });
+    
+</script>

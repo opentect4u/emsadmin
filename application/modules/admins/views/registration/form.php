@@ -4,7 +4,7 @@
 
         <form method="POST" 
             id="form"
-            action="<?php echo site_url("admin/organisation/add");?>" >
+            action="<?php echo site_url("admin/organisation/$url");?>" >
 
             <div class="col-md-8 container form-wraper" style="margin-left: 15%">
             
@@ -23,6 +23,7 @@
                         <input type="text"
                                class="form-control required"
                                name="org_name"
+                               value="<?php echo $data->org_name; ?>"
                                id="org_name"
                             />
 
@@ -39,6 +40,7 @@
                         <input type="date"
                                class="form-control required"
                                name="start_date"
+                               value="<?php echo $data->start_dt; ?>"
                                id="start_date"
                             />
 
@@ -50,6 +52,7 @@
 
                         <select class="form-control required"
                                 name="state"
+                                value="<?php echo $data->org_state; ?>"
                                 id="state"
                             >
 
@@ -59,7 +62,10 @@
                                 foreach($states as $list){
                             ?>
                                 
-                                <option value="<?php echo $list->id; ?>"><?php echo $list->state; ?></option>
+                                <option value="<?php echo $list->id; ?>" 
+                                <?php echo ($list->id == $data->org_state)? 'selected':''; ?>>
+                                <?php echo $list->state; ?>
+                                </option>
                                 
                             <?php
 
@@ -81,6 +87,7 @@
                         <input type="text"
                                 class="form-control required"
                                 name="email"
+                                value="<?php echo $data->org_email; ?>"
                                 id="email"
                             />
 
@@ -93,6 +100,7 @@
                         <input type="text"
                                 class="form-control required"
                                 name="phn_no"
+                                value="<?php echo $data->org_phno; ?>"
                                 id="phn_no"
                             />
 
@@ -109,6 +117,7 @@
                         <input type="text"
                             class="form-control"
                             name="contact_person"
+                            value="<?php echo $data->cnct_person; ?>"
                             id="contact_person"
                           />
 
@@ -121,6 +130,7 @@
                         <input type="text"
                                 class="form-control"
                                 name="designation"
+                                value="<?php echo $data->designation; ?>"
                                 id="designation"
                             />
 
@@ -137,6 +147,7 @@
                         <input type="text"
                                 class="form-control"
                                 name="user"
+                                value="<?php echo $data->no_of_user; ?>"
                                 id="user"
                           />
 
@@ -153,6 +164,7 @@
                         <input type="text"
                             class="form-control"
                             name="one_time_amt"
+                            value="<?php echo $data->one_time_amt; ?>"
                             id="one_time_amt"
                             />
 
@@ -165,6 +177,7 @@
                         <input type="text"
                             class="form-control"
                             name="monthly_amt"
+                            value="<?php echo $data->monthly_amt; ?>"
                             id="monthly_amt"
                             />
                     </div>
@@ -181,8 +194,8 @@
                                 name="org_status"
                                 id="org_status"
                             >
-                            <option value="A">Active</option>
-                            <option value="I">Inactive</option>
+                            <option value="A" <?php echo ($data->org_status == 1)? 'selected':''; ?> >Active</option>
+                            <option value="I" <?php echo ($data->org_status != 1)? 'selected':''; ?> >Inactive</option>
 
                         </select>
 
@@ -199,6 +212,7 @@
                         <input  type="text"
                                 class="form-control"
                                 name="website"
+                                value="<?php echo $data->org_website; ?>"
                                 id="website"
                             >
                     </div>
@@ -211,7 +225,7 @@
 
                     <div class="col-sm-10">
 
-                        <textarea class="form-control" name="address" id="address"></textarea>
+                        <textarea class="form-control" name="address" id="address"><?php echo $data->org_addr; ?></textarea>
 
                     </div>
 
@@ -220,7 +234,7 @@
                 <div class="form-group row">
 
                     <div class="col-sm-10">
-
+                        <input type="hidden" name="id" value="<?php echo $data->org_id; ?>" />
                         <input type="submit" id="submit" class="btn btn-info" value="Save" />
 
                     </div>
