@@ -33,7 +33,13 @@ class Admins extends MX_Controller {
 
     public function f_organisation(){
         
-        $data['org'] = $this->Admin->f_get_particulars('md_organisation', NULL, NULL, 0);
+        $select = array(
+            "m.org_name", "m.org_phno", "s.state org_state", "m.org_id"
+        );
+        $where = array(
+            "m.org_state = s.id" => NULL
+        );
+        $data['org'] = $this->Admin->f_get_particulars('md_organisation m, mm_states s', $select, $where, 0);
 
         $this->load->view('registration/dashboard', $data);
 
